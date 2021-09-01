@@ -1,0 +1,74 @@
+{
+  "ServerConfig": {
+    "Listen": "0.0.0.0",
+    "Port": 8888,
+    "ConfigCenter": {
+      "url": "http://127.0.0.1/config"
+    }
+  },
+  "RedisServers": [
+    {
+      "ip": "192.168.1.247",
+      "port": 6379,
+      "auth": "123456",
+      "MaxIdle": 10,
+      "IdleTimeout": 240,
+      "MaxActive": 300,
+      "db": 8,
+      "Pattern": [
+        {
+          "path": "/basTechnicianInfo/getTechnicianInfo",
+          "headerMatch": "tenantid",
+          "keyPattern": "technicianInfo:",
+          "returnPrefix": "{\"code\":\"200\",\"message\":\"\",\"data\":",
+          "returnSuffix": ",\"pageSize\":0,\"page\":0,\"totalPage\":0,\"totalRecords\":0}"
+        },
+        {
+          "path": "/basRoomInfo/new/selectRoomStatusByUnionPage",
+          "headerMatch": "tenantid",
+          "keyPattern": "ROOM:",
+          "returnPrefix": "{\"code\":\"200\",\"message\":\"\",\"data\":",
+          "returnSuffix": ",\"pageSize\":0,\"page\":0,\"totalPage\":0,\"totalRecords\":0}"
+        },
+        {
+          "path": "/basHandInfo/new/selectByCondition",
+          "headerMatch": "tenantid",
+          "keyPattern": "HAND:",
+          "returnPrefix": "{\"code\":\"200\",\"message\":\"\",\"data\":",
+          "returnSuffix": ",\"pageSize\":0,\"page\":0,\"totalPage\":0,\"totalRecords\":0}"
+        }
+      ]
+    }
+  ],
+  "OriginRedis": {
+    "ip": "192.168.1.247",
+    "port": 6379,
+    "auth": "123456",
+    "MaxIdle": 1,
+    "IdleTimeout": 240,
+    "MaxActive": 2,
+    "db": 4,
+    "headerMatch": "tenantid",
+    "keyPattern": "NODE:SERVER:"
+  },
+  "OriginServers": [
+    {
+      "schme": "http",
+      "host": "192.168.1.247",
+      "port": 1688,
+      "headerMatch": "tenantid",
+      "matchList": [
+        "100010"
+      ]
+    },
+    {
+      "schme": "http",
+      "host": "192.168.1.247",
+      "port": 1699,
+      "headerMatch": "tenantid",
+      "matchList": [
+        "100134"
+      ]
+    }
+  ]
+}
